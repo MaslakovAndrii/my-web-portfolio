@@ -428,21 +428,16 @@
       });
     }
   }, 0);
-  let a = document.getElementsByTagName("img");
-  for (let t in a)
-    a[t].oncontextmenu = function () {
-      return !1;
-    };
-  const l = document.querySelector(".portfolio__container"),
-    c = document.querySelector(".portfolio__list-cards");
-  function p() {
-    const t = l.getBoundingClientRect().width;
+  const a = document.querySelector(".portfolio__container"),
+    l = document.querySelector(".portfolio__list-cards");
+  function c() {
+    const t = a.getBoundingClientRect().width;
     const e = document.querySelectorAll(".placeholder"),
       o = document.querySelectorAll(".card-portfolio").length - e.length;
     function i(t) {
       const e = t - (o % t);
       for (let t = 0; t < e; t++)
-        c.insertAdjacentHTML(
+        l.insertAdjacentHTML(
           "beforeend",
           '\n                        <div class="portfolio__card card-portfolio placeholder">\n                            <img src="img/portfolio/no_img.jpeg" alt="screen website" class="card-portfolio__image">\n                            <div class="card-portfolio__drawer drawer drawer_blank">\n                                <p>in developing</p>\n                            </div>\n                        </div>'
         );
@@ -452,7 +447,7 @@
       t <= 767.98 && t > 584.98 && o % 2 && i(2),
       t <= 584.98 && e.forEach((t) => t.remove());
   }
-  const h = new (class {
+  const p = new (class {
     line = 0;
     count = 0;
     currentString = "";
@@ -480,16 +475,23 @@
     }
   })(".start-screen__name");
   window.addEventListener("load", () => {
-    p(), h.print();
+    c(), p.print();
   }),
     window.addEventListener("resize", () => {
-      p();
+      c();
     }),
     document.addEventListener("click", (t) => {
       t.target.closest(".drawer__arrow") &&
         (t.target.parentNode.classList.toggle("active"),
         t.target.classList.toggle("active_arrow"));
     }),
+    (function () {
+      let t = document.getElementsByTagName("img");
+      for (let e in t)
+        t[e].oncontextmenu = function () {
+          return !1;
+        };
+    })(),
     (window.FLS = !0),
     (function (t) {
       let e = new Image();

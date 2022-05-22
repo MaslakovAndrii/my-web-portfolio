@@ -137,6 +137,7 @@ body.popup-show::after {
 }
 
 .popup {
+  font-family: "Roboto";
   color: #1b1b20;
   position: fixed;
   top: 0;
@@ -161,6 +162,12 @@ body.popup-show::after {
 }
 .popup__text {
   line-height: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.popup__text p {
+  line-height: 130%;
 }
 
 .popup_show {
@@ -196,7 +203,7 @@ body.popup-show::after {
   padding: 50px 50px;
   width: 100%;
   max-width: 900px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .lock .popup__content {
   visibility: visible;
@@ -878,7 +885,7 @@ main::before {
   transform: rotate(-45deg);
 }
 
-.active {
+.active_drawer {
   top: 0;
 }
 .active_arrow {

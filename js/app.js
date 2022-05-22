@@ -39,15 +39,15 @@
     for (let e = 0; e < this.mediaQueries.length; e++) {
       const o = this.mediaQueries[e],
         i = String.prototype.split.call(o, ","),
-        n = window.matchMedia(i[0]),
-        s = i[1],
+        s = window.matchMedia(i[0]),
+        n = i[1],
         r = Array.prototype.filter.call(this.оbjects, function (t) {
-          return t.breakpoint === s;
+          return t.breakpoint === n;
         });
-      n.addListener(function () {
-        t.mediaHandler(n, r);
+      s.addListener(function () {
+        t.mediaHandler(s, r);
       }),
-        this.mediaHandler(n, r);
+        this.mediaHandler(s, r);
     }
   }),
     (t.prototype.mediaHandler = function (t, e) {
@@ -379,9 +379,9 @@
   }
   let o = !0,
     i = (t = 500) => {
-      document.documentElement.classList.contains("lock") ? n(t) : s(t);
+      document.documentElement.classList.contains("lock") ? s(t) : n(t);
     },
-    n = (t = 500) => {
+    s = (t = 500) => {
       let e = document.querySelector("body");
       if (o) {
         let i = document.querySelectorAll("[data-lp]");
@@ -398,7 +398,7 @@
           }, t);
       }
     },
-    s = (t = 500) => {
+    n = (t = 500) => {
       let e = document.querySelector("body");
       if (o) {
         let i = document.querySelectorAll("[data-lp]");
@@ -481,17 +481,28 @@
       c();
     }),
     document.addEventListener("click", (t) => {
-      t.target.closest(".drawer__arrow") &&
-        (t.target.parentNode.classList.toggle("active"),
-        t.target.classList.toggle("active_arrow"));
+      !(function (t) {
+        const e = document.querySelectorAll(".drawer_filled"),
+          o = document.querySelectorAll(".drawer__arrow");
+        t.target.closest(".drawer__arrow") && !t.target.closest(".active_arrow")
+          ? (o.forEach((t) => {
+              t.classList.remove("active_arrow");
+            }),
+            e.forEach((t) => {
+              t.classList.remove("active_drawer");
+            }),
+            t.target.parentNode.classList.toggle("active_drawer"),
+            t.target.classList.toggle("active_arrow"))
+          : t.target.closest(".drawer__arrow") &&
+            t.target.closest(".active_arrow") &&
+            (o.forEach((t) => {
+              t.classList.remove("active_arrow");
+            }),
+            e.forEach((t) => {
+              t.classList.remove("active_drawer");
+            }));
+      })(t);
     }),
-    (function () {
-      let t = document.getElementsByTagName("img");
-      for (let e in t)
-        t[e].oncontextmenu = function () {
-          return !1;
-        };
-    })(),
     (window.FLS = !0),
     (function (t) {
       let e = new Image();
